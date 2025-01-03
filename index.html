@@ -3,38 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Developer Portfolio with a Terminal Design"
-    />
-    <meta name="author" content="Your Name" />
-    <title>Developer Portfolio</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <title>Aashish Sekar</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/favicon.ico" />
   </head>
   <body>
-    <!-- Terminal Container -->
     <div class="terminal">
-      <div id="output">
-        <pre>
-        <span class="ascii-title">
-          ________  ________  ________  _________  ________ ________  ___       ___  ________     
-          |\   __  \|\   __  \|\   __  \|\___   ___\\  _____\\   __  \|\  \     |\  \|\   __  \    
-          \ \  \|\  \ \  \|\  \ \  \|\  \|___ \  \_\ \  \__/\ \  \|\  \ \  \    \ \  \ \  \|\  \   
-           \ \   ____\ \  \\\  \ \   _  _\   \ \  \ \ \   __\\ \  \\\  \ \  \    \ \  \ \  \\\  \  
-            \ \  \___|\ \  \\\  \ \  \\  \|   \ \  \ \ \  \_| \ \  \\\  \ \  \____\ \  \ \  \\\  \ 
-             \ \__\    \ \_______\ \__\\ _\    \ \__\ \ \__\   \ \_______\ \_______\ \__\ \_______\
-              \|__|     \|_______|\|__|\|__|    \|__|  \|__|    \|_______|\|_______|\|__|\|_______|          
-        </span>
-        <p>Welcome to my portfolio! Type <strong>help</strong> to see the list of available commands.</p>
-      </pre>
+      <div class="header">
+        <div class="buttons">
+          <span class="close"></span>
+          <span class="minimize"></span>
+          <span class="maximize"></span>
+        </div>
+        <div class="title">PORTFOLIO</div>
       </div>
-      <div id="input-line">
-        <span class="prompt">guest@portfolio:~$</span>
-        <input type="text" id="command-line" autofocus autocomplete="off" />
+      <div class="content">
+        <p>
+          Welcome to my portfolio! Type <span class="highlight">help</span> for
+          available commands.
+        </p>
+        <div id="output"></div>
+        <div class="input-line">
+          <span>$ </span><input id="input" type="text" autofocus />
+        </div>
       </div>
     </div>
-
-    <!-- Include JavaScript -->
-    <script src="js/script.js" defer></script>
+    <script src="script.js"></script>
   </body>
 </html>
