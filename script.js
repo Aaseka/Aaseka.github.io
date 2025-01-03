@@ -1,5 +1,26 @@
 const input = document.getElementById("input");
 const output = document.getElementById("output");
+const terminal = document.querySelector(".terminal");
+
+// Track mouse movement
+document.addEventListener("mousemove", (e) => {
+  const rect = terminal.getBoundingClientRect();
+  const cursorX = e.clientX;
+  const cursorY = e.clientY;
+
+  // Check if the cursor is close to any edge of the terminal
+  const proximityThreshold = 50; // Distance in pixels to trigger the highlight
+  const nearLeftEdge = cursorX - rect.left < proximityThreshold;
+  const nearRightEdge = rect.right - cursorX < proximityThreshold;
+  const nearTopEdge = cursorY - rect.top < proximityThreshold;
+  const nearBottomEdge = rect.bottom - cursorY < proximityThreshold;
+
+  if (nearLeftEdge || nearRightEdge || nearTopEdge || nearBottomEdge) {
+    terminal.classList.add("highlight"); // Show highlight
+  } else {
+    terminal.classList.remove("highlight"); // Hide highlight
+  }
+});
 
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
