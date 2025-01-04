@@ -21,24 +21,14 @@
   z-index: 1;
 }
 
-.content .quote {
-  color: white;
-  font-weight: bold;
-  font-style: italic;
-  font-size: 64px;
-  padding: 10px;
-  background-color: #101010;
-  border-radius: 10px;
-}
-
 .content .by {
   color: #00e1ff;
 }
 
 .blob-outer-container {
   position: fixed;
-  height: 200%;
-  width: 200;
+  height: 100%;
+  width: 100%;
   z-index: 0;
   inset: 0;
   margin: auto;
@@ -51,9 +41,9 @@
   position: absolute;
   inset: 0;
   margin: auto;
-  width: 300vw;
-  height: 300vh;
-  min-width: 2000px;
+  width: 100vw;
+  height: 100vh;
+  min-width: 1000px;
   overflow: hidden;
   background-color: #fff;
   transform: scale(0.8);
@@ -61,8 +51,8 @@
 
 .blob {
   position: absolute;
-  width: 300vw;
-  height: 300vh;
+  width: 500vw;
+  height: 500vh;
   inset: 0;
   margin: auto;
   background: conic-gradient(
