@@ -1,43 +1,43 @@
-const input = document.getElementById("input");
-const output = document.getElementById("output");
+document.addEventListener("DOMContentLoaded", () => {
+  const asciiArtElement = document.getElementById("ascii-art");
+  const input = document.getElementById("input");
+  const output = document.getElementById("output");
 
-input.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    const command = input.value.trim();
-    processCommand(command);
-    input.value = "";
+  // Load ASCII art
+  fetch("ascii.txt")
+    .then((response) => response.text())
+    .then((data) => (asciiArtElement.textContent = data));
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const command = input.value.trim();
+      processCommand(command);
+      input.value = "";
+    }
+  });
+
+  function processCommand(command) {
+    if (command === "clear") {
+      asciiArtElement.textContent = "";
+      output.innerHTML = "";
+    } else if (command === "help") {
+      const helpText = `
+  Available commands:
+  - about-me: Display information about me
+  - clear: Clear the terminal
+  - help: Display this help text
+  - my-projects: List personal projects
+  `;
+      appendOutput(helpText);
+    } else {
+      appendOutput(`Command not found: ${command}`);
+    }
+  }
+
+  function appendOutput(text) {
+    const pre = document.createElement("pre");
+    pre.textContent = text;
+    output.appendChild(pre);
+    output.scrollTop = output.scrollHeight;
   }
 });
-
-function processCommand(command) {
-  const response = document.createElement("p");
-  response.textContent = `$ ${command}`;
-  output.appendChild(response);
-
-  if (command === "help") {
-    const helpText = `
-      Available commands:
-      - about-me: Display information about me
-      - my-projects: Displays my personal projects
-      - contact: Displays contact details
-      - clear: Clears the terminal`;
-    addOutput(helpText);
-  } else if (command === "clear") {
-    output.innerHTML = "";
-  } else if (command === "about-me") {
-    addOutput("I am a passionate developer working on innovative projects!");
-  } else {
-    addOutput("Command not found.");
-  }
-
-  output.scrollTop = output.scrollHeight;
-}
-
-function addOutput(text) {
-  const lines = text.split("\n");
-  lines.forEach((line) => {
-    const p = document.createElement("p");
-    p.textContent = line;
-    output.appendChild(p);
-  });
-}
