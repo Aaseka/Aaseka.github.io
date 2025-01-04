@@ -7,18 +7,38 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Blob Animation -->
     <div class="blob-outer-container">
       <div class="blob-inner-container">
         <div class="blob"></div>
       </div>
     </div>
+
+    <!-- Home Page Content -->
     <div class="home-page">
       <div class="content">
-        <!--        <div class="quote">CSS ONLY</div>-->
-        <!--        <div class="by">- Sun Tzu, The Art of War</div>-->
+        <!-- Optionally add content or quotes -->
       </div>
     </div>
-    <!--Scripts-->
-    <script src="index.js"></script>
+
+    <div class="terminal">
+      <div class="header">
+        <div class="buttons">
+          <span class="close"></span>
+          <span class="minimize"></span>
+          <span class="maximize"></span>
+        </div>
+        <div class="title">Terminal</div>
+      </div>
+      <div class="content">
+        <p>$ Welcome to my portfolio!</p>
+        <p>$ Type "help" for a list of commands.</p>
+        <div id="output"></div>
+        <div class="input-line">
+          <span>$ </span><input id="input" type="text" autofocus />
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>
