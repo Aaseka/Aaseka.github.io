@@ -72,7 +72,6 @@ body {
   color: #ffffff;
   font-size: 14px;
   line-height: 1.5;
-  position: relative;
 }
 
 /* Custom scrollbar styling */
@@ -89,18 +88,10 @@ body {
   background-color: #1e1e1e;
 }
 
-/* Outputs with slight opacity */
-.output {
-  margin: 5px 0;
-  opacity: 0.8; /* Slight opacity for older commands */
-  transition: opacity 0.3s ease;
-}
-
-/* Input container */
+/* Input area */
 .input-container {
   display: flex;
   align-items: center;
-  margin-top: 15px; /* Adds space between input and previous commands */
 }
 
 .input-container .prompt {
@@ -116,10 +107,13 @@ body {
   font-size: 14px;
   outline: none;
   caret-color: #5fa7b2;
-  opacity: 1; /* Ensure input is fully opaque */
 }
 
-/* Highlight the input when typing */
-.input-container .input-field:focus {
-  opacity: 1;
+/* Outputs */
+.output {
+  margin: 5px 0;
+}
+
+.output .prompt {
+  color: #5fa7b2;
 }
