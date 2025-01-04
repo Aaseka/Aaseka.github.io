@@ -71,7 +71,7 @@ body {
 input {
   background: transparent;
   border: none;
-  color: rgb(252, 252, 252);
+  color: #0f0;
   outline: none;
   font-family: inherit;
   font-size: 1em;
@@ -81,81 +81,16 @@ input {
   box-shadow: 0 0 10px yellow;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  outline: 0;
-  font-family: sans-serif;
-}
-
-.home-page {
-  background-color: #ffe4c4;
-  height: 100vh;
-  display: grid;
-  place-items: center;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  position: relative;
-  z-index: 1;
-}
-
-.content .by {
-  color: #00e1ff;
-}
-
-.blob-outer-container {
-  position: fixed;
-  height: 100%;
+/* Background Animation */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  z-index: 0;
-  inset: 0;
-  margin: auto;
-  filter: blur(100px);
-  opacity: 0.5;
-}
-
-.blob-inner-container {
-  border-radius: 99999px;
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 100vw;
-  height: 100vh;
-  min-width: 1000px;
-  overflow: hidden;
-  background-color: #fff;
-  transform: scale(0.8);
-}
-
-.blob {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  inset: 0;
-  margin: auto;
-  background: conic-gradient(
-    from 0deg,
-    #08f,
-    #f60,
-    #bbffa1,
-    #4c00ff,
-    #ab2666,
-    #09f
-  );
-  animation: spinBlob 20s linear infinite;
-}
-
-@keyframes spinBlob {
-  0% {
-    transform: rotate(0deg) scale(2);
-  }
-
-  100% {
-    transform: rotate(1turn) scale(2);
-  }
+  height: 100%;
+  background: linear-gradient(270deg, #000, #111, #000);
+  background-size: 600% 600%;
+  animation: waves 10s ease infinite;
+  z-index: -1;
 }
