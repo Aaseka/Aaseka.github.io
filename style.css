@@ -51,8 +51,8 @@
 
 .blob {
   position: absolute;
-  width: 500vw;
-  height: 500vh;
+  width: 100vw;
+  height: 100vh;
   inset: 0;
   margin: auto;
   background: conic-gradient(
@@ -64,7 +64,7 @@
     #ab2666,
     #09f
   );
-  animation: spinBlob 8s linear infinite;
+  animation: spinBlob 20s linear infinite;
 }
 
 @keyframes spinBlob {
