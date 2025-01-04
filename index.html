@@ -3,30 +3,233 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - Aashish Sekar</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Developer Portfolio - Terminal</title>
+    <style>
+      /* General body styling */
+      body {
+        font-family: "Courier New", Courier, monospace;
+        margin: 0;
+        padding: 0;
+        background-color: #282c34;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* Terminal container */
+      .terminal-container {
+        position: absolute; /* Allows it to be draggable */
+        width: 80%;
+        max-width: 900px;
+        height: 500px;
+        background-color: #1e1e1e;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: height 0.3s ease;
+        cursor: grab;
+      }
+
+      /* Terminal maximized state */
+      .terminal-container.maximized {
+        height: 700px; /* Slightly taller height */
+      }
+
+      /* Dashboard bar at the top */
+      .dashboard {
+        height: 30px;
+        background-color: #4b4b4b;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        cursor: grab;
+      }
+
+      /* Dashboard buttons */
+      .dashboard .button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .dashboard .close {
+        background-color: #ff5f56;
+      }
+
+      .dashboard .minimize {
+        background-color: #ffbd2e;
+      }
+
+      .dashboard .maximize {
+        background-color: #27c93f;
+      }
+
+      /* Terminal body */
+      .terminal-body {
+        flex-grow: 1;
+        padding: 10px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        color: #ffffff;
+        font-size: 14px;
+        line-height: 1.5;
+        position: relative;
+      }
+
+      /* Custom scrollbar styling */
+      .terminal-body::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .terminal-body::-webkit-scrollbar-thumb {
+        background-color: #4b4b4b;
+        border-radius: 4px;
+      }
+
+      .terminal-body::-webkit-scrollbar-track {
+        background-color: #1e1e1e;
+      }
+
+      /* Outputs with slight opacity */
+      .output {
+        margin: 5px 0;
+        opacity: 0.8; /* Slight opacity for older commands */
+        transition: opacity 0.3s ease;
+      }
+
+      /* Input container */
+      .input-container {
+        display: flex;
+        align-items: center;
+        margin-top: 15px; /* Adds space between input and previous commands */
+      }
+
+      .input-container .prompt {
+        color: #5fa7b2;
+        margin-right: 5px;
+      }
+
+      .input-container .input-field {
+        flex-grow: 1;
+        background: none;
+        border: none;
+        color: #ffffff;
+        font-size: 14px;
+        outline: none;
+        caret-color: #5fa7b2;
+        opacity: 1; /* Ensure input is fully opaque */
+      }
+
+      /* Highlight the input when typing */
+      .input-container .input-field:focus {
+        opacity: 1;
+      }
+    </style>
   </head>
   <body>
     <div class="terminal-container">
-      <div class="terminal-header">
-        <div class="header-buttons">
-          <div class="button close"></div>
-          <div class="button minimize"></div>
-          <div class="button maximize"></div>
-        </div>
-        <div class="header-title"></div>
+      <div class="dashboard">
+        <div class="button close"></div>
+        <div class="button minimize"></div>
+        <div class="button maximize"></div>
       </div>
       <div class="terminal-body">
-        <div class="terminal-content">
-          <p class="output">Welcome to my developer portfolio</p>
-          <p class="output">Type 'help' to get started.</p>
-          <div class="input-line">
-            <span class="prompt">guest@portfolio:~$</span>
-            <input type="text" class="input-field" autofocus />
-          </div>
-        </div>
+        <p class="output">Welcome to my developer portfolio!</p>
+        <p class="output">Type 'help' to get started.</p>
+      </div>
+      <div class="input-container">
+        <span class="prompt">guest@portfolio:~$</span>
+        <input type="text" class="input-field" />
       </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const terminalContainer = document.querySelector(".terminal-container");
+        const maximizeButton = document.querySelector(".maximize");
+        const inputField = document.querySelector(".input-field");
+        const terminalContent = document.querySelector(".terminal-body");
+
+        let isMaximized = false;
+
+        // Maximize button functionality
+        maximizeButton.addEventListener("click", () => {
+          if (!isMaximized) {
+            terminalContainer.classList.add("maximized");
+          } else {
+            terminalContainer.classList.remove("maximized");
+          }
+          isMaximized = !isMaximized;
+        });
+
+        // Handle input field behavior
+        inputField.addEventListener("keypress", (event) => {
+          if (event.key === "Enter") {
+            const userInput = inputField.value.trim();
+
+            // Append user's input as an output
+            if (userInput) {
+              const userInputLine = document.createElement("p");
+              userInputLine.classList.add("output");
+              userInputLine.innerHTML = `<span class="prompt">guest@portfolio:~$</span> ${userInput}`;
+              terminalContent.appendChild(userInputLine);
+            }
+
+            // Handle commands
+            if (userInput === "help") {
+              const helpOutput = document.createElement("p");
+              helpOutput.classList.add("output");
+              helpOutput.textContent =
+                "Available commands: 'help', 'about', 'clear'.";
+              terminalContent.appendChild(helpOutput);
+            } else if (userInput === "about") {
+              const aboutOutput = document.createElement("p");
+              aboutOutput.classList.add("output");
+              aboutOutput.textContent =
+                "This is a developer portfolio terminal.";
+              terminalContent.appendChild(aboutOutput);
+            } else if (userInput === "clear") {
+              // Clear the terminal but keep the input line
+              terminalContent.innerHTML = ""; // Clear the terminal content
+              const welcomeMessage1 = document.createElement("p");
+              const welcomeMessage2 = document.createElement("p");
+
+              welcomeMessage1.classList.add("output");
+              welcomeMessage2.classList.add("output");
+
+              welcomeMessage1.textContent =
+                "Welcome to my developer portfolio!";
+              welcomeMessage2.textContent = "Type 'help' to get started.";
+
+              terminalContent.appendChild(welcomeMessage1);
+              terminalContent.appendChild(welcomeMessage2);
+            } else if (
+              userInput &&
+              userInput !== "clear" &&
+              userInput !== "help" &&
+              userInput !== "about"
+            ) {
+              const errorOutput = document.createElement("p");
+              errorOutput.classList.add("output");
+              errorOutput.textContent = `Command not found: ${userInput}`;
+              terminalContent.appendChild(errorOutput);
+            }
+
+            // Clear input field
+            inputField.value = "";
+
+            // Scroll to the bottom
+            terminalContent.scrollTop = terminalContent.scrollHeight;
+          }
+        });
+      });
+    </script>
   </body>
 </html>
