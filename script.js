@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Maximize button functionality
   maximizeButton.addEventListener("click", () => {
     if (!isMaximized) {
-      terminalContainer.classList.add("fullscreen");
+      terminalContainer.classList.add("maximized");
     } else {
-      terminalContainer.classList.remove("fullscreen");
+      terminalContainer.classList.remove("maximized");
     }
     isMaximized = !isMaximized;
   });
