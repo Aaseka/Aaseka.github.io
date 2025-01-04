@@ -1,0 +1,115 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1e1e2f;
+  font-family: "Courier New", Courier, monospace;
+  color: #c0c0c0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.terminal-container {
+  width: 700px;
+  height: 400px;
+  background-color: #272822;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Header */
+.terminal-header {
+  background-color: #202225;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.close {
+  background-color: #ff5f56;
+}
+
+.minimize {
+  background-color: #ffbd2e;
+}
+
+.maximize {
+  background-color: #27c93f;
+  cursor: pointer;
+}
+
+.header-title {
+  color: #d3d3d3;
+  font-size: 14px;
+}
+
+/* Terminal Body */
+.terminal-body {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+.terminal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.output {
+  line-height: 1.5;
+}
+
+.input-line {
+  display: flex;
+  align-items: center;
+}
+
+.prompt {
+  color: #00ff00;
+  margin-right: 10px;
+}
+
+.input-field {
+  background-color: transparent;
+  border: none;
+  color: #c0c0c0;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  width: 100%;
+}
+
+.input-field::placeholder {
+  color: #666;
+}
+
+/* Fullscreen Effect */
+.fullscreen {
+  width: 100vw !important;
+  height: 100vh !important;
+  border-radius: 0 !important;
+}
